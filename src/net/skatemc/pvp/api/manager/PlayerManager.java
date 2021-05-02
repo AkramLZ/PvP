@@ -2,9 +2,7 @@ package net.skatemc.pvp.api.manager;
 
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.group.Group;
-import net.skatemc.pvp.api.PvAPI;
 import net.skatemc.pvp.api.player.PVPlayer;
-import net.skatemc.pvp.api.player.Prestige;
 import org.bukkit.entity.Player;
 
 import java.util.HashSet;

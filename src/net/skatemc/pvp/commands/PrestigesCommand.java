@@ -14,7 +14,7 @@ public class PrestigesCommand extends AICommand {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if(args.length != 1) {
-            commandSender.sendMessage();
+            commandSender.sendMessage("");
         }
         return true;
     }

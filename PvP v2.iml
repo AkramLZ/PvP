@@ -9,6 +9,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="SkateLib" level="project" />
     <orderEntry type="library" name="spigot-1.8.8-R0.1-SNAPSHOT-latest" level="project" />
-    <orderEntry type="library" name="LuckPerms-Bukkit-5.2.76" level="project" />
+    <orderEntry type="library" name="LuckPerms" level="project" />
+    <orderEntry type="library" name="SkateMC Library" level="project" />
+    <orderEntry type="library" name="Library" level="project" />
   </component>
 </module>

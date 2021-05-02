@@ -1,0 +1,30 @@
+messages: # Use '' to disable messages.
+  prestige-up: "&c%player%e's prestige upgraded &c%old_prestige% &e-> &c%new_prestige%"
+  prestige-down: "&c%player%e's prestige downgraded &c%old_prestige% &e-> &c%new_prestige%"
+  join: ''
+  quit: ''
+  kill-broadcast: '&c%player% &ewas slain by &c%killer%'
+  prestiges:
+    header: '&ePrestiges List: &fPage &e%page%&f/&e%pages%'
+    middle: '&8» &e%prestige%&f: &c%points% &epoints required.'
+    footer: ''
+scoreboard:
+  title: '&e&lPVP'
+  scores:
+    - ''
+    - '&fPrestige: &e%prestige%'
+    - ''
+    - '&fKills: &e%kills%'
+    - '&fDeaths: &e%deaths%'
+    - '&fPoints: &e%points%'
+    - '&fSouls: &e%souls%'
+    - '&fK/D Ratio: &e%kdr%'
+    - ''
+    - '&fProgress: &e%progress%'
+    - ''
+    - '&eplay.serverip.net'
+progress:
+  symbol: '|'
+  reached-color: '&e'
+  left-color: '&8'
+  split: 10

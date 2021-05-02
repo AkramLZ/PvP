@@ -1,13 +1,19 @@
 package net.skatemc.pvp.api.player;
 
+import com.google.common.base.Strings;
 import net.luckperms.api.model.group.Group;
 import net.skatemc.pvp.Main;
 import net.skatemc.pvp.api.PvAPI;
+import net.skatemc.pvp.config.ConfigEnum;
 import net.skatemc.pvp.data.save.PVSlot;
 import net.skatemc.pvp.kits.Kit;
+import net.skatemc.pvp.utils.ChatUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.nio.file.FileSystemNotFoundException;
 import java.text.DecimalFormat;
+import java.util.Iterator;
 
 public abstract class PVPlayer {
 
@@ -45,7 +51,25 @@ public abstract class PVPlayer {
     }
 
     public Prestige getPrestige() {
-        return PvAPI.get().getPrestigeManager().getPrestige(points);
+        int points$ = points > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)points;
+        return PvAPI.get().getPrestigeManager().getPrestige(points$);
+    }
+
+    public Prestige getNextPrestige() {
+        int points$ = points > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)points;
+        Iterator iterator = PvAPI.get().getPrestigeManager().getPrestiges().iterator();
+        int i = 0;
+        while(iterator.hasNext()) {
+            i++;
+            Prestige prestige = (Prestige) iterator.next();
+            if(prestige == getPrestige()) {
+                if(i == PvAPI.get().getPrestigeManager().getPrestiges().size()) {
+                    return prestige;
+                }
+                return (Prestige) iterator.next();
+            }
+        }
+        return null;
     }
 
     public void saveData() {
@@ -96,11 +120,58 @@ public abstract class PVPlayer {
     }
 
     public double getKDR() {
-        DecimalFormat decimalFormat = new DecimalFormat("##.##");
+        DecimalFormat decimalFormat = new DecimalFormat("###.##");
         if (getDeaths() <= 0) {
             return 1.00D;
         }
         return Double.valueOf(decimalFormat.format(kills / deaths)).doubleValue();
+    }
+
+    public int getProgress() {
+        int points = getPoints() > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)getPoints();
+        return (getNextPrestige().getRequiredPoints() - getPrestige().getRequiredPoints()) - points;
+    }
+
+    public String getProgressBar() {
+        String reachedColor = ChatUtils.colored(PvAPI.get().getConfigManager()
+                .getConfig(ConfigEnum.MESSAGES).getString("progress.reached-color"));
+        String leftColor = ChatUtils.colored(PvAPI.get().getConfigManager()
+                .getConfig(ConfigEnum.MESSAGES).getString("progress.left-color"));
+        String symbol = ChatUtils.colored(PvAPI.get().getConfigManager()
+                .getConfig(ConfigEnum.MESSAGES).getString("progress.symbol"));
+        int split = PvAPI.get().getConfigManager().getConfig(ConfigEnum.MESSAGES).getInt("progress.split");
+        int progress = getProgress();
+        int distance = getNextPrestige().getRequiredPoints() - getPrestige().getRequiredPoints();
+        int left = distance - progress;
+        int reached = distance - left;
+        int symbolLength = distance / split; // 10000/20=500
+        StringBuilder builder = new StringBuilder();
+        if(distance == 0) { // 20;5000;10000;5000;5000;500
+            for(int i = 0; i < split; i++) {
+                builder.append(reachedColor).append(symbol);
+            }
+        } else {
+            int leftSize = Math.round(left/symbolLength);
+            int reachedSize = Math.round(reached/symbolLength);
+            for(int i = 0; i < reachedSize; i++) {
+                builder.append(reachedColor).append(symbol);
+            };
+            for(int i = 0; i < leftSize; i++) {
+                builder.append(leftColor).append(symbol);
+            }
+        }
+        Bukkit.getConsoleSender().sendMessage(builder.toString());
+        return builder.toString();
+//        return getProgressBar(progress, distance,20, symbol, reachedColor, leftColor);
+    }
+
+    String getProgressBar(int current, int max, int totalBars, String symbol, String completedColor,
+                                 String notCompletedColor) {
+        float percent = (float) current / max;
+        int progressBars = (int) (totalBars * percent);
+
+        return Strings.repeat("" + completedColor + symbol, progressBars)
+                + Strings.repeat("" + notCompletedColor + symbol, totalBars - progressBars);
     }
 
 }

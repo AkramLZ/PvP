@@ -44,21 +44,21 @@ public class MainProvider implements Loadable {
         PvAPI.get().getPrestigeManager().registerPrestige(new PrestigeBuilder("Unranked")
                 .setDisplayName("§eUNRANKED").setRequiredPoints(0).build());
         PvAPI.get().getPrestigeManager().registerPrestige(new PrestigeBuilder("Bronze I")
-                .setDisplayName("§2Bronze §5I").setRequiredPoints(1000).build());
+                .setDisplayName("§2Bronze §5I").setRequiredPoints(10000).build());
         PvAPI.get().getPrestigeManager().registerPrestige(new PrestigeBuilder("Bronze II")
-                .setDisplayName("§2Bronze §6II").setRequiredPoints(5000).build());
+                .setDisplayName("§2Bronze §6II").setRequiredPoints(25000).build());
         PvAPI.get().getPrestigeManager().registerPrestige(new PrestigeBuilder("Bronze III")
-                .setDisplayName("§2Bronze §8III").setRequiredPoints(10000).build());
+                .setDisplayName("§2Bronze §8III").setRequiredPoints(40000).build());
         PvAPI.get().getPrestigeManager().registerPrestige(new PrestigeBuilder("Bronze IV")
-                .setDisplayName("§2Bronze §cIV").setRequiredPoints(15000).build());
+                .setDisplayName("§2Bronze §cIV").setRequiredPoints(55000).build());
         PvAPI.get().getPrestigeManager().registerPrestige(new PrestigeBuilder("Silver I")
-                .setDisplayName("§7Silver §5I").setRequiredPoints(20000).build());
+                .setDisplayName("§7Silver §5I").setRequiredPoints(70000).build());
         PvAPI.get().getPrestigeManager().registerPrestige(new PrestigeBuilder("Silver II")
-                .setDisplayName("§7Silver §6II").setRequiredPoints(25000).build());
+                .setDisplayName("§7Silver §6II").setRequiredPoints(85000).build());
         PvAPI.get().getPrestigeManager().registerPrestige(new PrestigeBuilder("Silver III")
-                .setDisplayName("§7Silver §8III").setRequiredPoints(30000).build());
+                .setDisplayName("§7Silver §8III").setRequiredPoints(100000).build());
         PvAPI.get().getPrestigeManager().registerPrestige(new PrestigeBuilder("Silver IV")
-                .setDisplayName("§7Silver §cIV").setRequiredPoints(35000).build());
+                .setDisplayName("§7Silver §cIV").setRequiredPoints(150000).build());
     }
 
     public Data getData() {

@@ -34,4 +34,6 @@ public class PvAPI {
         return this.prestigeManager;
     }
 
+    public ConfigManager getConfigManager() { return this.configManager; }
+
 }

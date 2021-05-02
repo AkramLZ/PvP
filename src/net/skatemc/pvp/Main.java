@@ -24,6 +24,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        if(!getDataFolder().exists()) getDataFolder().mkdir();
         File messagesFile = new File(getDataFolder() + "/messages.yml");
         try {
             Files.copy(getResource("messages.yml"), messagesFile.toPath());
@@ -31,7 +32,7 @@ public class Main extends JavaPlugin {
             getLogger().log(Level.SEVERE, "Failed to load messages.yml, " + e.getMessage());
         }
         this.messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
-        saveDefaultConfig();
+//        saveDefaultConfig();
         this.provider = new MainProvider(this);
         this.locationUtils = new LocationUtils(this);
         this.provider.onEnable();

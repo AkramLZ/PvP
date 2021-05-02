@@ -6,6 +6,9 @@ import net.skatemc.lib.scoreboard.type.Entry;
 import net.skatemc.lib.scoreboard.type.Scoreboard;
 import net.skatemc.pvp.api.PvAPI;
 import net.skatemc.pvp.api.player.PVPlayer;
+import net.skatemc.pvp.config.ConfigEnum;
+import net.skatemc.pvp.utils.ChatUtils;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -25,18 +28,27 @@ public class GameBoard extends AIScoreboard {
     public List<Entry> getScores(Player player) {
         PVPlayer pvplayer = PvAPI.get().getPlayerManager().getPlayer(player);
         EntryBuilder entryBuilder = new EntryBuilder();
-        return new EntryBuilder()
-                .blank()
-                .next("§fPrestige: §eSOON")
-                .blank()
-                .next("§fKills: §e" + pvplayer.getKills())
-                .next("§fDeaths: §e" + pvplayer.getDeaths())
-                .next("§fPoints: §e" + pvplayer.getPoints())
-                .next("§fSouls: §e" + pvplayer.getSouls())
-                .next("§fKDR: §e" + pvplayer.getKDR())
-                .blank()
-                .next("§eplay.skatemc.net")
-                .build();
+        FileConfiguration config = PvAPI.get().getConfigManager().getConfig(ConfigEnum.MESSAGES);
+        for(String si : config.getStringList("scoreboard.scores")) {
+            if(si.equals("")) {
+                entryBuilder = entryBuilder.blank();
+            } else {
+                entryBuilder = entryBuilder.next(ChatUtils.colored(translate(player, si)));
+            }
+        }
+        return entryBuilder.build();
+//        return new EntryBuilder()
+//                .blank()
+//                .next("§fPrestige: §eSOON")
+//                .blank()
+//                .next("§fKills: §e" + pvplayer.getKills())
+//                .next("§fDeaths: §e" + pvplayer.getDeaths())
+//                .next("§fPoints: §e" + pvplayer.getPoints())
+//                .next("§fSouls: §e" + pvplayer.getSouls())
+//                .next("§fKDR: §e" + pvplayer.getKDR())
+//                .blank()
+//                .next("§eplay.skatemc.net")
+//                .build();
     }
 
     @Override
@@ -52,6 +64,19 @@ public class GameBoard extends AIScoreboard {
     @Override
     public long getUpdateInterval() {
         return 10L;
+    }
+
+    private String translate(Player player, String text) {
+        PVPlayer pvPlayer = PvAPI.get().getPlayerManager().getPlayer(player);
+        return text.replace("%player%", player.getName())
+                .replace("%prestige%", ChatUtils.colored(pvPlayer.getPrestige().getDisplayName()))
+                .replace("%progress%", ChatUtils.colored(pvPlayer.getProgressBar()))
+                .replace("%kills%", ChatUtils.formattedInt(pvPlayer.getKills()))
+                .replace("%kills%", ChatUtils.formattedInt(pvPlayer.getKills()))
+                .replace("%deaths%", ChatUtils.formattedInt(pvPlayer.getDeaths()))
+                .replace("%points%", ChatUtils.formattedInt(pvPlayer.getPoints()))
+                .replace("%souls%", ChatUtils.formattedInt(pvPlayer.getSouls()))
+                .replace("%kdr%", "" + pvPlayer.getKDR());
     }
 
 }

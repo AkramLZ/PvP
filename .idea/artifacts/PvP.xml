@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PvP">
+    <output-path>$USER_HOME$/Desktop/</output-path>
+    <root id="archive" name="PvP.jar">
+      <element id="module-output" name="PvP v2" />
+      <element id="file-copy" path="$PROJECT_DIR$/messages.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>

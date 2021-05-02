@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="SkateLib">
+  <library name="LuckPerms">
     <CLASSES>
-      <root url="jar://D:/SkateLib.jar!/" />
+      <root url="jar://D:/LuckPerms.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
