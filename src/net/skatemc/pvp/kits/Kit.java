@@ -1,8 +1,12 @@
 package net.skatemc.pvp.kits;
 
 import net.skatemc.lib.utils.ItemStackBuilder;
+import net.skatemc.pvp.api.PvAPI;
 import net.skatemc.pvp.api.common.IKit;
+import net.skatemc.pvp.api.player.PVPlayer;
+import net.skatemc.pvp.data.save.PVSlot;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class Kit {
@@ -17,15 +21,20 @@ public class Kit {
         public static class MEMBER implements IKit {
 
             @Override
-            public ItemStack[] getContents() {
-                return new ItemStack[]{new ItemStackBuilder(Material.STONE_SWORD).infinite().build(),
-                        new ItemStackBuilder(Material.BOW).infinite().build(),
-                        new ItemStackBuilder(Material.FISHING_ROD).infinite().build(), null, null, null, null, null,
-                        new ItemStackBuilder(Material.ARROW).setAmount(8).build()};
+            public ItemStack[] getContents(Player player) {
+                ItemStack[] arrayStack = new ItemStack[9];
+                PVPlayer pvp = PvAPI.get().getPlayerManager().getPlayer(player);
+                int swordSlot = pvp.getSlot(PVSlot.SWORD), rodSlot = pvp.getSlot(PVSlot.ROD),
+                        bowSlot = pvp.getSlot(PVSlot.BOW), arrowSlot = pvp.getSlot(PVSlot.ARROW);
+                arrayStack[swordSlot] = new ItemStackBuilder(Material.STONE_SWORD).infinite().build();
+                arrayStack[bowSlot] = new ItemStackBuilder(Material.BOW).infinite().build();
+                arrayStack[rodSlot] = new ItemStackBuilder(Material.FISHING_ROD).infinite().build();
+                arrayStack[arrowSlot] = new ItemStackBuilder(Material.ARROW).setAmount(8).build();
+                return arrayStack;
             }
 
             @Override
-            public ItemStack[] getArmors() {
+            public ItemStack[] getArmors(Player player) {
                 return new ItemStack[]{new ItemStackBuilder(Material.CHAINMAIL_BOOTS).infinite().build(),
                         new ItemStackBuilder(Material.CHAINMAIL_LEGGINGS).infinite().build(),
                         new ItemStackBuilder(Material.CHAINMAIL_CHESTPLATE).infinite().build(),
@@ -42,15 +51,20 @@ public class Kit {
         public static class YOUTUBER implements IKit {
 
             @Override
-            public ItemStack[] getContents() {
-                return new ItemStack[]{new ItemStackBuilder(Material.STONE_SWORD).infinite().build(),
-                        new ItemStackBuilder(Material.BOW).infinite().build(),
-                        new ItemStackBuilder(Material.FISHING_ROD).infinite().build(), null, null, null, null, null,
-                        new ItemStackBuilder(Material.ARROW).setAmount(10).build()};
+            public ItemStack[] getContents(Player player) {
+                ItemStack[] arrayStack = new ItemStack[9];
+                PVPlayer pvp = PvAPI.get().getPlayerManager().getPlayer(player);
+                int swordSlot = pvp.getSlot(PVSlot.SWORD), rodSlot = pvp.getSlot(PVSlot.ROD),
+                        bowSlot = pvp.getSlot(PVSlot.BOW), arrowSlot = pvp.getSlot(PVSlot.ARROW);
+                arrayStack[swordSlot] = new ItemStackBuilder(Material.STONE_SWORD).infinite().build();
+                arrayStack[bowSlot] = new ItemStackBuilder(Material.BOW).infinite().build();
+                arrayStack[rodSlot] = new ItemStackBuilder(Material.FISHING_ROD).infinite().build();
+                arrayStack[arrowSlot] = new ItemStackBuilder(Material.ARROW).setAmount(10).build();
+                return arrayStack;
             }
 
             @Override
-            public ItemStack[] getArmors() {
+            public ItemStack[] getArmors(Player player) {
                 return new ItemStack[]{new ItemStackBuilder(Material.IRON_BOOTS).infinite().build(),
                         new ItemStackBuilder(Material.CHAINMAIL_LEGGINGS).infinite().build(),
                         new ItemStackBuilder(Material.CHAINMAIL_CHESTPLATE).infinite().build(),
@@ -67,15 +81,20 @@ public class Kit {
         public static class GOLD implements IKit {
 
             @Override
-            public ItemStack[] getContents() {
-                return new ItemStack[]{new ItemStackBuilder(Material.STONE_SWORD).infinite().build(),
-                        new ItemStackBuilder(Material.BOW).infinite().build(),
-                        new ItemStackBuilder(Material.FISHING_ROD).infinite().build(), null, null, null, null, null,
-                        new ItemStackBuilder(Material.ARROW).setAmount(12).build()};
+            public ItemStack[] getContents(Player player) {
+                ItemStack[] arrayStack = new ItemStack[9];
+                PVPlayer pvp = PvAPI.get().getPlayerManager().getPlayer(player);
+                int swordSlot = pvp.getSlot(PVSlot.SWORD), rodSlot = pvp.getSlot(PVSlot.ROD),
+                        bowSlot = pvp.getSlot(PVSlot.BOW), arrowSlot = pvp.getSlot(PVSlot.ARROW);
+                arrayStack[swordSlot] = new ItemStackBuilder(Material.STONE_SWORD).infinite().build();
+                arrayStack[bowSlot] = new ItemStackBuilder(Material.BOW).infinite().build();
+                arrayStack[rodSlot] = new ItemStackBuilder(Material.FISHING_ROD).infinite().build();
+                arrayStack[arrowSlot] = new ItemStackBuilder(Material.ARROW).setAmount(12).build();
+                return arrayStack;
             }
 
             @Override
-            public ItemStack[] getArmors() {
+            public ItemStack[] getArmors(Player player) {
                 return new ItemStack[]{new ItemStackBuilder(Material.CHAINMAIL_BOOTS).infinite().build(),
                         new ItemStackBuilder(Material.CHAINMAIL_LEGGINGS).infinite().build(),
                         new ItemStackBuilder(Material.IRON_CHESTPLATE).infinite().build(),
@@ -92,15 +111,20 @@ public class Kit {
         public static class DIAMOND implements IKit {
 
             @Override
-            public ItemStack[] getContents() {
-                return new ItemStack[]{new ItemStackBuilder(Material.STONE_SWORD).infinite().build(),
-                        new ItemStackBuilder(Material.BOW).infinite().build(),
-                        new ItemStackBuilder(Material.FISHING_ROD).infinite().build(), null, null, null, null, null,
-                        new ItemStackBuilder(Material.ARROW).setAmount(15).build()};
+            public ItemStack[] getContents(Player player) {
+                ItemStack[] arrayStack = new ItemStack[9];
+                PVPlayer pvp = PvAPI.get().getPlayerManager().getPlayer(player);
+                int swordSlot = pvp.getSlot(PVSlot.SWORD), rodSlot = pvp.getSlot(PVSlot.ROD),
+                        bowSlot = pvp.getSlot(PVSlot.BOW), arrowSlot = pvp.getSlot(PVSlot.ARROW);
+                arrayStack[swordSlot] = new ItemStackBuilder(Material.STONE_SWORD).infinite().build();
+                arrayStack[bowSlot] = new ItemStackBuilder(Material.BOW).infinite().build();
+                arrayStack[rodSlot] = new ItemStackBuilder(Material.FISHING_ROD).infinite().build();
+                arrayStack[arrowSlot] = new ItemStackBuilder(Material.ARROW).setAmount(15).build();
+                return arrayStack;
             }
 
             @Override
-            public ItemStack[] getArmors() {
+            public ItemStack[] getArmors(Player player) {
                 return new ItemStack[]{new ItemStackBuilder(Material.CHAINMAIL_BOOTS).infinite().build(),
                         new ItemStackBuilder(Material.IRON_LEGGINGS).infinite().build(),
                         new ItemStackBuilder(Material.IRON_CHESTPLATE).infinite().build(),
@@ -117,15 +141,20 @@ public class Kit {
         public static class EMERALD implements IKit {
 
             @Override
-            public ItemStack[] getContents() {
-                return new ItemStack[]{new ItemStackBuilder(Material.STONE_SWORD).infinite().build(),
-                        new ItemStackBuilder(Material.BOW).infinite().build(),
-                        new ItemStackBuilder(Material.FISHING_ROD).infinite().build(), null, null, null, null, null,
-                        new ItemStackBuilder(Material.ARROW).setAmount(22).build()};
+            public ItemStack[] getContents(Player player) {
+                ItemStack[] arrayStack = new ItemStack[9];
+                PVPlayer pvp = PvAPI.get().getPlayerManager().getPlayer(player);
+                int swordSlot = pvp.getSlot(PVSlot.SWORD), rodSlot = pvp.getSlot(PVSlot.ROD),
+                        bowSlot = pvp.getSlot(PVSlot.BOW), arrowSlot = pvp.getSlot(PVSlot.ARROW);
+                arrayStack[swordSlot] = new ItemStackBuilder(Material.STONE_SWORD).infinite().build();
+                arrayStack[bowSlot] = new ItemStackBuilder(Material.BOW).infinite().build();
+                arrayStack[rodSlot] = new ItemStackBuilder(Material.FISHING_ROD).infinite().build();
+                arrayStack[arrowSlot] = new ItemStackBuilder(Material.ARROW).setAmount(22).build();
+                return arrayStack;
             }
 
             @Override
-            public ItemStack[] getArmors() {
+            public ItemStack[] getArmors(Player player) {
                 return new ItemStack[]{new ItemStackBuilder(Material.IRON_BOOTS).infinite().build(),
                         new ItemStackBuilder(Material.IRON_LEGGINGS).infinite().build(),
                         new ItemStackBuilder(Material.IRON_CHESTPLATE).infinite().build(),

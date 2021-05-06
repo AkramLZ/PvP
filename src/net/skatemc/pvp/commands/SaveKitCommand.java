@@ -8,13 +8,15 @@ public class SaveKitCommand extends AICommand {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        // TODO Auto-generated method stub
-        return false;
+        if(args.length != 0) {
+
+        }
+        return true;
     }
 
     @Override
     public String getName() {
-        return "kitsaver";
+        return "save";
     }
 
 }

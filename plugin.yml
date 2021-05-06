@@ -3,6 +3,6 @@ author: iiProCraft
 version: 1.0
 main: net.skatemc.pvp.Main
 commands:
-  kitsaver:
+  save:
   prestiges:
   setspawn:

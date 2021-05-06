@@ -12,6 +12,9 @@ public class ConfigManager {
         if(configEnum == ConfigEnum.MESSAGES) {
             return Main.getInstance().getMessagesConfig();
         }
+        if(configEnum == ConfigEnum.PRESTIGES) {
+            return Main.getInstance().getPrestigesConfig();
+        }
         return null;
     }
 

@@ -1,0 +1,44 @@
+#
+#         PvP System
+#       Prestiges file
+#
+prestiges:
+  'Unranked':
+    display-name: '&7UNRANKED'
+    required-points: 0
+  'Bronze I':
+    display-name: '&aBronze &5I'
+    required-points: 10000
+  'Bronze II':
+    display-name: '&aBronze &6II'
+    required-points: 25000
+  'Bronze III':
+    display-name: '&aBronze &8III'
+    required-points: 40000
+  'Bronze IV':
+    display-name: '&aBronze &cIV'
+    required-points: 55000
+  'Silver I':
+    display-name: '&7Silver &5I'
+    required-points: 70000
+  'Silver II':
+    display-name: '&7Silver &6II'
+    required-points: 85000
+  'Silver III':
+    display-name: '&7Silver &8III'
+    required-points: 100000
+  'Silver IV':
+    display-name: '&7Silver &cIV'
+    required-points: 150000
+  'Gold I':
+    display-name: '&6Gold &5I'
+    required-points: 200000
+  'Gold II':
+    display-name: '&6Gold &6II'
+    required-points: 250000
+  'Gold III':
+    display-name: '&6Gold &8III'
+    required-points: 300000
+  'Gold IV':
+    display-name: '&6Gold &cIV'
+    required-points: 350000

@@ -127,4 +127,68 @@ public class KitSave {
         }
     }
 
+    public int getSword(UUID uuid) {
+        int slot = -1;
+        try {
+            PreparedStatement statement = con.getConnection().prepareStatement("SELECT * FROM pvp_inventories WHERE UUID='"
+                + uuid + "'");
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                slot = resultSet.getInt("Sword");
+                resultSet.close();
+                statement.close();
+            }
+        } catch (SQLException exception) {
+        }
+        return slot;
+    }
+
+    public int getRod(UUID uuid) {
+        int slot = -1;
+        try {
+            PreparedStatement statement = con.getConnection().prepareStatement("SELECT * FROM pvp_inventories WHERE UUID='"
+                    + uuid + "'");
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                slot = resultSet.getInt("Rod");
+                resultSet.close();
+                statement.close();
+            }
+        } catch (SQLException exception) {
+        }
+        return slot;
+    }
+
+    public int getBow(UUID uuid) {
+        int slot = -1;
+        try {
+            PreparedStatement statement = con.getConnection().prepareStatement("SELECT * FROM pvp_inventories WHERE UUID='"
+                    + uuid + "'");
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                slot = resultSet.getInt("Bow");
+                resultSet.close();
+                statement.close();
+            }
+        } catch (SQLException exception) {
+        }
+        return slot;
+    }
+
+    public int getArrow(UUID uuid) {
+        int slot = -1;
+        try {
+            PreparedStatement statement = con.getConnection().prepareStatement("SELECT * FROM pvp_inventories WHERE UUID='"
+                    + uuid + "'");
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                slot = resultSet.getInt("Arrow");
+                resultSet.close();
+                statement.close();
+            }
+        } catch (SQLException exception) {
+        }
+        return slot;
+    }
+
 }

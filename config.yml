@@ -1,0 +1,12 @@
+#
+#         PvP System
+#     Configuration file
+#
+death:
+  points-multiplier:
+    kill:
+      mode: SPLIT # Modes: SPLT, INTEGER
+      value: 33
+    death:
+      mode: SPLIT # Modes: SPLT, INTEGER
+      value: 33

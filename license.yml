@@ -1,0 +1,6 @@
+#
+#       PvP System
+#   License Loader file
+#
+loader:
+  secret-key: 'put-your-key-here'

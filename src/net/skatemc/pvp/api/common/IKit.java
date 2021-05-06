@@ -5,16 +5,16 @@ import org.bukkit.inventory.ItemStack;
 
 public interface IKit {
 
-    ItemStack[] getContents();
+    ItemStack[] getContents(Player player);
 
-    ItemStack[] getArmors();
+    ItemStack[] getArmors(Player player);
 
     String getName();
 
     default void give(Player player) {
         player.getInventory().clear();
-        player.getInventory().setArmorContents(getArmors());
-        player.getInventory().setContents(getContents());
+        player.getInventory().setArmorContents(getArmors(player));
+        player.getInventory().setContents(getContents(player));
     }
 
 }

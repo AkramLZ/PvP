@@ -3,7 +3,21 @@ messages: # Use '' to disable messages.
   prestige-down: "&c%player%e's prestige downgraded &c%old_prestige% &e-> &c%new_prestige%"
   join: ''
   quit: ''
-  kill-broadcast: '&c%player% &ewas slain by &c%killer%'
+  death-broadcast:
+    killed: '&c%player% &ewas slain by &c%killer%'
+    died: '&c%player% &ehas been died.'
+  kit-save:
+    saved: '&eKit has been successfully saved'
+  join-motd:
+    enabled: true
+    message:
+      - '&e▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀'
+      - '"&e&l                   PVP'
+      - ''
+      - '&b   Fight the other players and gain'
+      - '&b       souls to upgrade yourself'
+      - ''
+      - '&e▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄'
   prestiges:
     header: '&ePrestiges List: &fPage &e%page%&f/&e%pages%'
     middle: '&8» &e%prestige%&f: &c%points% &epoints required.'
@@ -27,4 +41,4 @@ progress:
   symbol: '|'
   reached-color: '&e'
   left-color: '&8'
-  split: 10
+  split: 20

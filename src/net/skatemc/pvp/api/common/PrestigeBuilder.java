@@ -16,11 +16,6 @@ public class PrestigeBuilder {
         return this;
     }
 
-    public PrestigeBuilder setName(String name) {
-        this.name = name;
-        return this;
-    }
-
     public PrestigeBuilder setDisplayName(String displayName) {
         this.displayName = displayName;
         return this;
