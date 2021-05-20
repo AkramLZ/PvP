@@ -3,10 +3,18 @@
 #     Configuration file
 #
 death:
-  points-multiplier:
-    kill:
-      mode: SPLIT # Modes: SPLT, INTEGER
-      value: 33
-    death:
-      mode: SPLIT # Modes: SPLT, INTEGER
-      value: 33
+  multipliers:
+    points:
+      mode: SPLIT # Modes: INTEGER, SPLIT
+      remove-on-self-death: true # It will remove points when the player dies without killer
+      kill:
+         value: 33
+      death:
+        value: 33
+    souls:
+      mode: INTEGER # Modes, INTEGER, RANGE
+      value: 10
+      max-value: 30 # Won't do anything if the mode is STATIC
+      remove-on-death:
+        self: false
+        killed: false

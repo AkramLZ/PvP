@@ -50,7 +50,6 @@ public class License {
             log(1, "[License] License is NOT valid!");
             log(1, "[License] Failed as a result of " + vt.toString());
             log(1, "[License] Disabling plugin!");
-
             Bukkit.getScheduler().cancelTasks(plugin);
             Bukkit.getPluginManager().disablePlugin(plugin);
             return false;

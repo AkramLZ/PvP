@@ -1,6 +1,7 @@
 package net.skatemc.pvp.data;
 
 import net.skatemc.pvp.Main;
+import net.skatemc.pvp.data.impl.SQLConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +10,9 @@ import java.util.UUID;
 
 public class Data {
 
-    private SQLite con;
+    private SQLConnection con;
 
-    public Data(SQLite con) {
+    public Data(SQLConnection con) {
         this.con = con;
         try {
             PreparedStatement st = con.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS pvp_data "

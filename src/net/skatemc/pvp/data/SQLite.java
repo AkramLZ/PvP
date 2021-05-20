@@ -1,6 +1,7 @@
 package net.skatemc.pvp.data;
 
 import net.skatemc.pvp.Main;
+import net.skatemc.pvp.data.impl.SQLConnection;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,12 +9,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class SQLite {
+public class SQLite extends SQLConnection {
 
     private Connection con;
+    private String path;
 
+    public SQLite(String path) { this.path = path; }
+
+    @Override
     public boolean connect() {
-        File dataFolder = new File(Main.getInstance().getDataFolder(), "stats.db");
+        File dataFolder = new File(path);
         if (!dataFolder.exists()) {
             try {
                 dataFolder.createNewFile();
@@ -35,6 +40,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public Connection getConnection() {
         return con;
     }

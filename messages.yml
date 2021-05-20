@@ -1,13 +1,28 @@
+#
+#           PvP System
+#   Messages Configuration file
+#
 messages: # Use '' to disable messages.
+  # NOTE: Not all messages can be disabled
   prestige-up: "&c%player%e's prestige upgraded &c%old_prestige% &e-> &c%new_prestige%"
   prestige-down: "&c%player%e's prestige downgraded &c%old_prestige% &e-> &c%new_prestige%"
   join: ''
   quit: ''
   death-broadcast:
-    killed: '&c%player% &ewas slain by &c%killer%'
-    died: '&c%player% &ehas been died.'
+    # Placeholders: %killer%, %player%, %killer_prefix%, %player_prefix%, %killer_suffix%, %player_suffix%, %health%
+    killed: ''
+    # Placeholders: %player%, %player_prefix%, %player_suffix%
+    died: ''
+  death-message: # Messages that will be sent to the victim and killer
+    killed:
+      victim: '&eYou got killed by &c%killer_suffix%%killer% &ewith &c%health% ❤ &eleft'
+      killer: '&eYou''ve killed &c%player_suffix%%player% &ewith &c%health% ❤ &eleft'
+    died: '&eYou''ve been died.'
+
   kit-save:
     saved: '&eKit has been successfully saved'
+    not-eligible: '&cYou are not eligible to save your kit for now.'
+    usage: '&cUsage: /save'
   join-motd:
     enabled: true
     message:
@@ -18,10 +33,20 @@ messages: # Use '' to disable messages.
       - '&b       souls to upgrade yourself'
       - ''
       - '&e▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄'
+  progress-command:
+    usage: '&cUsage: /progress [player]'
+    not-online: '&cSorry but &4%player% &cis not online.'
+    you:
+      - '&eYour Prestige progress: &7[&e%progress%&7]'
+    others:
+      - '&c%suffix%%player%&e''s Prestige progress: &7[&e%progress%&7]'
   prestiges:
     header: '&ePrestiges List: &fPage &e%page%&f/&e%pages%'
     middle: '&8» &e%prestige%&f: &c%points% &epoints required.'
     footer: ''
+    usage: '&cUsage: /prestiges (page)'
+    invalid-number: '&cPlease enter a valid number.'
+    invalid-page: '&cThere''s only %pages% pages.'
 scoreboard:
   title: '&e&lPVP'
   scores:
@@ -34,11 +59,15 @@ scoreboard:
     - '&fSouls: &e%souls%'
     - '&fK/D Ratio: &e%kdr%'
     - ''
-    - '&fProgress: &e%progress%'
+    - '&fProgress:'
+    - '&8➟ &e%progress%'
     - ''
     - '&eplay.serverip.net'
+chat-format:
+  normal: '&e%prestige% &8| &f%suffix%%player% &8» &f%message'
+  spectate: '&4SPECTATE &8| &f%suffix%%player% &8» &f%message'
 progress:
-  symbol: '|'
+  symbol: '⬛'
   reached-color: '&e'
   left-color: '&8'
-  split: 20
+  split: 10

@@ -32,11 +32,6 @@ public class PlayerManager {
                 return player;
             }
 
-            @Override
-            public Group getGroup() {
-                return LuckPermsProvider.get().getGroupManager().getGroup(LuckPermsProvider.get().getUserManager()
-                        .getUser(getPlayer().getUniqueId()).getCachedData().getMetaData().getPrimaryGroup());
-            }
         });
         getPlayer(player).injectData();
     }

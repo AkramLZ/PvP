@@ -1,6 +1,7 @@
 package net.skatemc.pvp.api.player;
 
 import com.google.common.base.Strings;
+import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.group.Group;
 import net.skatemc.pvp.Main;
 import net.skatemc.pvp.api.PvAPI;
@@ -21,8 +22,6 @@ public abstract class PVPlayer {
     private int swordSlot = 0, bowSlot = 1, rodSlot = 2, arrowSlot = 8;
 
     public abstract Player getPlayer();
-
-    public abstract Group getGroup();
 
     public void injectData() {
         kills = Main.getInstance().getProvider().getData().getKills(getPlayer().getUniqueId());
@@ -54,6 +53,51 @@ public abstract class PVPlayer {
         }
     }
 
+    public Group getGroup() {
+        return LuckPermsProvider.get().getGroupManager().getGroup(LuckPermsProvider.get().getUserManager()
+                .getUser(getPlayer().getUniqueId()).getCachedData().getMetaData().getPrimaryGroup());
+    }
+
+    public boolean isSpectating() { return false; }
+
+    public void injectKit() {
+        if (getGroup().getName().equalsIgnoreCase("default")) {
+            getPlayer().getInventory().clear();
+            Kit.MEMBER.give(getPlayer());
+        } else if (getGroup().getName().equalsIgnoreCase("youtuber")) {
+            getPlayer().getInventory().clear();
+            Kit.YOUTUBER.give(getPlayer());
+        } else if (getGroup().getName().equalsIgnoreCase("gold")) {
+            getPlayer().getInventory().clear();
+            Kit.GOLD.give(getPlayer());
+        } else if (getGroup().getName().equalsIgnoreCase("diamond")) {
+            getPlayer().getInventory().clear();
+            Kit.DIAMOND.give(getPlayer());
+        } else if (getGroup().getName().equalsIgnoreCase("emerald")) {
+            getPlayer().getInventory().clear();
+            Kit.EMERALD.give(getPlayer());
+        } else {
+            getPlayer().getInventory().clear();
+            Kit.MEMBER.give(getPlayer());
+        }
+    }
+
+    public String getPrefix() {
+        String prefix = getGroup().getCachedData().getMetaData().getPrefix();
+        if(prefix == null) {
+            return "";
+        }
+        return ChatUtils.colored(prefix);
+    }
+
+    public String getSuffix() {
+        String suffix = getGroup().getCachedData().getMetaData().getSuffix();
+        if(suffix == null) {
+            return "";
+        }
+        return ChatUtils.colored(suffix);
+    }
+
     public Prestige getPrestige() {
         int points$ = points > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)points;
         return PvAPI.get().getPrestigeManager().getPrestige(points$);
@@ -80,12 +124,10 @@ public abstract class PVPlayer {
         Main.getInstance().getProvider().getData().setDeaths(getPlayer().getUniqueId(), deaths);
         Main.getInstance().getProvider().getData().setPoints(getPlayer().getUniqueId(), points);
         Main.getInstance().getProvider().getData().setSouls(getPlayer().getUniqueId(), souls);
-        if (swordSlot != 0 || bowSlot != 1 || rodSlot != 2 || arrowSlot != 8) {
-            if (Main.getInstance().getProvider().getKitSaveData().saved(getPlayer().getUniqueId())) {
-                Main.getInstance().getProvider().getKitSaveData().unsave(getPlayer().getUniqueId());
-            }
-            Main.getInstance().getProvider().getKitSaveData().save(getPlayer());
+        if (Main.getInstance().getProvider().getKitSaveData().saved(getPlayer().getUniqueId())) {
+            Main.getInstance().getProvider().getKitSaveData().unsave(getPlayer().getUniqueId());
         }
+        Main.getInstance().getProvider().getKitSaveData().save(getPlayer());
     }
 
     public long getKills() {
@@ -103,6 +145,14 @@ public abstract class PVPlayer {
     public long getSouls() {
         return souls;
     }
+
+    public void getKills(long kills) { this.kills = kills; }
+
+    public void setDeaths(long deaths) {  this.deaths = deaths; }
+
+    public void setPoints(long points) { this.points = points; }
+
+    public void setSouls(long souls) { this.souls = souls; }
 
     public int getSlot(PVSlot slot) {
         if (slot == PVSlot.SWORD) {

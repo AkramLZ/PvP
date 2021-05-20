@@ -1,0 +1,12 @@
+data:
+  type: MYSQL # Avaliable type ares: SQLITE, MYSQL
+  # What is the difference between them?
+  # SQLite uses a file to store the data
+  # while MySQL uses sql server to store
+  # the data and you need mysql server
+  properties:
+    file: '$PLUGIN_ROOT/stats.db' # '$PLUGIN_ROOT' will be replaced with plugins/PvP/
+    host: localhost
+    port: 3306
+    username: sqluser
+    password: 'DeEpWe^!3)b'

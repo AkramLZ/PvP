@@ -1,9 +1,10 @@
 package net.skatemc.pvp.data;
 
 import net.skatemc.pvp.Main;
+import net.skatemc.pvp.data.impl.SQLConnection;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.InventoryView;
+import org.bukkit.inventory.Inventory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,9 +13,9 @@ import java.util.UUID;
 
 public class KitSave {
 
-    private SQLite con;
+    private SQLConnection con;
 
-    public KitSave(SQLite con) {
+    public KitSave(SQLConnection con) {
         this.con = con;
         try {
             PreparedStatement st = con.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS pvp_inventories "
@@ -55,13 +56,9 @@ public class KitSave {
     }
 
     public void save(Player player) {
-        InventoryView inv = player.getOpenInventory();
-        if (inv == null)
-            return;
-        if (!inv.getTitle().equalsIgnoreCase("Kit Saver"))
-            return;
+        Inventory inv = player.getInventory();
         int sword = 0, rod = 0, bow = 0, arrows = 0;
-        for (int slot = 0; slot < 9; slot++) {
+        for (int slot = 0; slot < inv.getSize(); slot++) {
             if (inv.getItem(slot) != null) {
                 if (inv.getItem(slot).getType() == Material.STONE_SWORD) {
                     sword = slot;
@@ -76,6 +73,15 @@ public class KitSave {
                     arrows = slot;
                 }
             }
+        }
+        try {
+            PreparedStatement st = con.getConnection().prepareStatement(
+                    "INSERT INTO pvp_inventories (UUID, Sword, Rod, Bow, Arrow) " +
+                    "VALUES ('" + player.getUniqueId() + "', " + sword + ", " + rod + ", " + bow + ", " + arrows + ")");
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         setSword(player.getUniqueId(), sword);
         setRod(player.getUniqueId(), rod);
@@ -128,7 +134,7 @@ public class KitSave {
     }
 
     public int getSword(UUID uuid) {
-        int slot = -1;
+        int slot = 0;
         try {
             PreparedStatement statement = con.getConnection().prepareStatement("SELECT * FROM pvp_inventories WHERE UUID='"
                 + uuid + "'");
@@ -144,7 +150,7 @@ public class KitSave {
     }
 
     public int getRod(UUID uuid) {
-        int slot = -1;
+        int slot = 2;
         try {
             PreparedStatement statement = con.getConnection().prepareStatement("SELECT * FROM pvp_inventories WHERE UUID='"
                     + uuid + "'");
@@ -160,7 +166,7 @@ public class KitSave {
     }
 
     public int getBow(UUID uuid) {
-        int slot = -1;
+        int slot = 1;
         try {
             PreparedStatement statement = con.getConnection().prepareStatement("SELECT * FROM pvp_inventories WHERE UUID='"
                     + uuid + "'");
@@ -176,7 +182,7 @@ public class KitSave {
     }
 
     public int getArrow(UUID uuid) {
-        int slot = -1;
+        int slot = 8;
         try {
             PreparedStatement statement = con.getConnection().prepareStatement("SELECT * FROM pvp_inventories WHERE UUID='"
                     + uuid + "'");
